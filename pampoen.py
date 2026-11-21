@@ -84,8 +84,8 @@ while True:
 		#check list empty and entity type is pumpkin
 		if not _unsuccess_grown:
 
-			#do a flip for timing 
-			for i in range(3):
+			#do a flip for timing
+			for i in range(4): # keep it a 4 for timing
 				do_a_flip()
 
 			harvest() #harvest big

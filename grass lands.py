@@ -9,9 +9,9 @@ while True:
 			till()
 			plant(Entities.Carrot)
 			
-		move(East)
+		move(North)
 			
 		if (get_ground_type() == Grounds.Soil):
 			plant(Entities.Carrot)
 	
-	move(North)
+	move(East)
