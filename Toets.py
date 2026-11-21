@@ -1,14 +1,4 @@
-# harvest()
-# move(South)
-# _success = 0
-
-# if not (get_entity_type() != Entities.Dead_Pumpkin):
-# 		_success += 1
-# 		print(_success)
-		
-
-		
-# get_entity_size
+harvest()
 
 world_size = get_world_size()
 
@@ -24,4 +14,4 @@ def move_to(target_x, target_y):
 	while get_pos_y() > target_y:
 		move(South)
 		
-move_to(4, 5)
+move_to(0, 0)

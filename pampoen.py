@@ -3,13 +3,16 @@ clear ()
 _world_size = get_world_size() * get_world_size()
 _pos = 0
 _unsuccess_grown = []
-_success_grown = 0
+_row_count = 0
 
 
 
 
-def plant_pumpkin():
+def do_row():
 	global _pos
+	global _row_count
+
+	_row_count = 0
 	
 	for i in range(get_world_size()):
 		
@@ -54,40 +57,32 @@ def move_to(target_x, target_y):
 
 
 
-
-
 while True:
+	#pass through everything to plant then scan
+	for i in range(get_world_size() * 2): # 2 full passes
+		do_row()
+		move(East)
 
-	if _pos >= _world_size:
-		_pos = 0
+
+	while True:
+		list = []
+	
+		#unsuccess loop through and re plant unsuccess
+		for x, y in _unsuccess_grown:
+			move_to(x, y)
+	
+			if get_entity_type() != Entities.Pumpkin:
+				plant(Entities.Pumpkin)
+				list.append((x, y))
 		
-		while len(_unsuccess_grown) >= 1 :
-			list = []
-			
-			for x, y in _unsuccess_grown:
-				move_to(x, y)
-				
-				if get_entity_type() != Entities.Pumpkin:
-					plant(Entities.Pumpkin)
-					list.append((x,y))
-				
-				
-				
-				
-				
 			_unsuccess_grown = list
-			
 		
-		if len(_unsuccess_grown) <= 0:
-			move_to(0,0)
-			do_a_flip()
+		#debugging
+		# print (_unsuccess_grown)
+		# print(len(_unsuccess_grown))
+
+		if not _unsuccess_grown:
 			harvest()
-	
-		
-		
-		
-	
-	
-	plant_pumpkin()
-		
-	move(East)
+			move_to(0,0)
+			break #exit the loop
+
