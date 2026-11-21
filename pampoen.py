@@ -77,9 +77,10 @@ while True:
 				
 			_unsuccess_grown = list
 			
-		harvest()
+		
+	
 		move_to(0,0)
-				
+		harvest()
 			
 		
 		
