@@ -2,7 +2,7 @@ clear ()
 
 _world_size = get_world_size() * get_world_size()
 _pos = 0
-_unsuccess_grown = 0
+_unsuccess_grown = []
 _success_grown = 0
 
 
@@ -31,20 +31,57 @@ def scan_block():
 	
 	
 	if not (get_entity_type() != Entities.Dead_Pumpkin):
-		_unsuccess_grown += 1
+		# log pos
+		_unsuccess_grown.append((get_pos_x(), get_pos_y()))
+		
+		
+		
+
+
+# moving around
+def move_to(target_x, target_y):
+	while get_pos_x() < target_x:
+		move(East)
+	while get_pos_x() > target_x:
+		move(West)
+		
+	while get_pos_y() < target_y:
+		move(North)
+	while get_pos_y() > target_y:
+		move(South)
+
+
+
+
 
 
 
 while True:
-	
-	
+
 	if _pos >= _world_size:
 		_pos = 0
 		
-		if _unsuccess_grown == 0:
-			harvest()
+		while len(_unsuccess_grown) >= 1 :
+			list = []
 			
-		_unsuccess_grown = 0
+			for x, y in _unsuccess_grown:
+				move_to(x, y)
+				
+				if get_entity_type() != Entities.Pumpkin:
+					plant(Entities.Pumpkin)
+					list.append((x,y))
+				
+				
+				
+				
+				
+			_unsuccess_grown = list
+			
+		harvest()
+		move_to(0,0)
+				
+			
+		
 		
 	
 	
