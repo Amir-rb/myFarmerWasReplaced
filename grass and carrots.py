@@ -1,15 +1,19 @@
 clear()
+num = 0
 
 while True:
-	for i in range(get_world_size()):
-		
-			
-		if get_ground_type() != Grounds.Soil:
-			till()
-		else:
-			harvest()
-			plant(Entities.Carrot)
-			
-			move(East)
+	harvest()
+	till()
 	
-	move(North)
+	if get_ground_type() == Grounds.Soil:
+		plant(Entities.Carrot)
+		move(North)
+	elif get_ground_type() == Grounds.Grassland:
+		plant(Entities.Grass)
+		move(North)
+	
+	num += 1
+	
+	if num == get_world_size():
+		move(East)
+		num = 0

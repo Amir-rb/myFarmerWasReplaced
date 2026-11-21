@@ -78,10 +78,12 @@ while True:
 			_unsuccess_grown = list
 			
 		
+		if len(_unsuccess_grown) <= 0:
+			move_to(0,0)
+			do_a_flip()
+			harvest()
 	
-		move_to(0,0)
-		harvest()
-			
+		
 		
 		
 	
