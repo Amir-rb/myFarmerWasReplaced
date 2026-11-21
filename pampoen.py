@@ -82,6 +82,8 @@ while True:
 		# print(len(_unsuccess_grown))
 
 		if not _unsuccess_grown:
+			for i in range(3):
+				do_a_flip()
 			harvest()
 			move_to(0,0)
 			break #exit the loop
