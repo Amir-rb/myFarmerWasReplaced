@@ -5,3 +5,7 @@
 
 
 
+#plant first
+#then measure
+
+

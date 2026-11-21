@@ -81,10 +81,14 @@ while True:
 		# print (_unsuccess_grown)
 		# print(len(_unsuccess_grown))
 
+		#check list empty and entity type is pumpkin
 		if not _unsuccess_grown:
+
+			#do a flip for timing 
 			for i in range(3):
 				do_a_flip()
-			harvest()
-			move_to(0,0)
+
+			harvest() #harvest big
+			move_to(0,0) #move to start
 			break #exit the loop
 
