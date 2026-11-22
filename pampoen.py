@@ -6,8 +6,6 @@ _unsuccess_grown = []
 _row_count = 0
 
 
-
-
 def do_row():
 	global _pos
 	global _row_count
