@@ -9,54 +9,55 @@ clear()
 
 #variables
 _world_size = get_world_size()
-_entity_list = []
-_sorted_list = []
+
+# other vars
+_min_size = 7
 
 
 #plant first per row
 def Plant_row():
-    global _entity_list
-    
-    for i in range(_world_size):
-        if get_ground_type() != Grounds.Soil:
-            till()
-        
-        plant(Entities.Sunflower)
-        
-        #get entity value aka num petals
-        x, y = get_pos_x(), get_pos_y()
-        _entity_list.append((measure(), (x, y)))
-        
-        move(North)
-        
-def sort_list(list):
-    #sort petal number
-    n = len(list)
-    for i in range(n - 1):
-        
-        swapped = False
-        
-        for j in range(n - i -1):
-            if list[j][0] < list[j + 1][0]:
-                list[j], list[j + 1] = list[j + 1], list[j]
-                
-                swapped = True
-                
-        if not swapped:
-            break
-            
-    return list
+	for i in range(_world_size):
+		if get_ground_type() != Grounds.Soil:
+			till()
+		
+		use_item(Items.Water)
+		plant(Entities.Sunflower)
 
-#plant sunflowers
-for row in range(_world_size * 1): #full field once
-    Plant_row()
-    move(East)
+		#get entity value aka num petals and cords
+		x, y, value = get_pos_x(), get_pos_y(), measure()
+		
+		# get target key
+		target_key = value - 7
 
-_sorted_list = sort_list(_entity_list)
+		if target_key in _entity_dic:
+			_entity_dic[target_key].append((x,y))
+			
 
-for value, (x, y) in _sorted_list:
+		move(North)
+		
 
-    move_to(x,y)
-    harvest()
+while True:
+	# set var after every loop
+	_entity_dic = {}
+	for i in range(9):
+		_entity_dic[i] = []
 
-move_to(0,0)
+	
+	#plant sunflowers  
+	for row in range(_world_size * 1): #full field once
+		Plant_row()
+		move(East)
+
+	# wait for everything to grow
+	for i in range(3):
+		do_a_flip()
+
+	# move through from most to least
+	for key in range(8, -1, -1):
+		list = _entity_dic[key]
+	
+		for (x,y) in  list:
+			move_to(x, y)
+			harvest()
+
+	move_to(0,0)
