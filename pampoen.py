@@ -39,7 +39,7 @@ def scan_block():
 	if not (get_entity_type() != Entities.Dead_Pumpkin):
 		# log pos
 		_unsuccess_grown.append((get_pos_x(), get_pos_y()))
-		Water() # 
+		Water() # water
 		
 		
 def Water():

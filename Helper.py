@@ -9,3 +9,6 @@ def is_even(n):
 def wait(n):
 	for i in range(n):
 		do_a_flip()
+
+def Water():
+    use_item(Items.Water)
