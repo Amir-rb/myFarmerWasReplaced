@@ -22,13 +22,13 @@ def Plant_row():
 			till()
 		
 		use_item(Items.Water)
-		plant(Entities.Sunflower)
+		plant_cell(Entities.Sunflower)
 
 		#get entity value aka num petals and cords
 		x, y, value = get_pos_x(), get_pos_y(), measure()
 		
 		# get target key
-		target_key = value - 7
+		target_key = value - _min_size
 
 		if target_key in _entity_dic:
 			_entity_dic[target_key].append((x,y))

@@ -1,3 +1,7 @@
+# helper vars
+world_size = get_world_size()
+
+
 # helper methods
 def plant_cell(arr):
 	harvest()
