@@ -5,6 +5,7 @@
 
 from Movement import move_to
 
+
 clear()
 
 #variables
@@ -49,8 +50,7 @@ while True:
 		move(East)
 
 	# wait for everything to grow
-	for i in range(3):
-		do_a_flip()
+	wait(1)
 
 	# move through from most to least
 	for key in range(8, -1, -1):

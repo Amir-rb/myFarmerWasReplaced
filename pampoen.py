@@ -72,6 +72,7 @@ while True:
 		# print (_unsuccess_grown)
 		# print(len(_unsuccess_grown))
 
+		#maybe a while loop
 		#check list empty and entity type is pumpkin
 		if (not _unsuccess_grown) and (can_harvest()):
 
