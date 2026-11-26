@@ -13,32 +13,65 @@ from Movement import *
 # move to (0,0)
 move_to(0,0)
 
-#defs
-
-
-
-
-
 # main while area
-list = []
-#first planing 
-for x in range(world_size):
+#first planting 
+while True:
+    list = []
     
-    row = []
-    for y in range(world_size):
-        plant_cell(Entities.Cactus)
+    for x in range(world_size):
         
-        row.append(measure())
+        row = []
+        for y in range(world_size):
+            plant_cell(Entities.Cactus)
+        
+            row.append(measure())
         
         
-        move(North)
+            move(North)
         
-    list.append(row)
-    move(East)
+        list.append(row)
+        move(East)
 
-#swapping
-for a in range(world_size):
-    n = len(list[a])
-    for i in range(n -1):
-        for j in range(n - i - 1):
-            if list
+
+    #sort row West => East
+    for a in range(world_size):
+
+        move_to(0, a)
+    
+        for i in range(world_size - 1):
+            swapped = False
+            for j in range(world_size - i - 1):
+                if measure() > measure(East):
+                    swap(East)
+                    swapped = True
+            
+                move(East)
+            if not swapped:
+                break
+        
+            move_to(0,a)
+
+    #sort South => north
+    for a in range(world_size):
+    
+        move_to(a, 0)
+    
+        for i in range(world_size -1):
+        
+            swapped = False
+        
+            for j in range(world_size - i - 1):
+                if measure() > measure(North):
+                    swap(North)
+                    swapped = True
+                
+                move(North)
+        
+            if not swapped:
+                break
+        
+            move_to(a, 0)
+        
+    move_to(0,0)
+
+    harvest()
