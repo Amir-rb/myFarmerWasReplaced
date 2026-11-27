@@ -16,23 +16,19 @@ move_to(0,0)
 # main while area
 #first planting 
 while True:
-	list = []
-	
 	for x in range(world_size):
 		
-		row = []
 		for y in range(world_size):
 			if get_ground_type() != Grounds.Soil:
 				till()
 			
-			plant_cell(Entities.Cactus)
-		
-			# row.append(measure())
+			if not get_entity_type() or get_entity_type() != Entities.Cactus:
+				plant_cell(Entities.Cactus)
+
 		
 		
 			move(North)
-		
-		# list.append(row)
+
 		move(East)
 
 
