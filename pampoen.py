@@ -1,6 +1,7 @@
 from Movement import move_to
 
-clear()
+# clear()
+move_to(0,0)
 
 #variables
 _pos = 0
@@ -39,6 +40,7 @@ while True:
 
 	while True:
 		list = []
+		check_again = []
 	
 		#unsuccess loop through and re plant unsuccess
 		for x, y in _unsuccess_grown:
@@ -50,10 +52,16 @@ while True:
 				list.append((x, y))
 		
 		_unsuccess_grown = list
+		check_again = list
+
+
+		#check again if for some reason it is not over the last remaining dead pumpkin
+		for x, y in check_again:
+			move_to(x,y)
+			plant(Entities.Pumpkin)
 
 		#check list empty and entity type is pumpkin
 		if (not _unsuccess_grown) and (can_harvest()):
-
 			#do a flip for timing
 			for i in range(1): # keep it a 4 for timing / solved???? maybe just 1 for now
 				do_a_flip()
@@ -61,3 +69,5 @@ while True:
 			harvest() #harvest big
 			move_to(0,0) #move to start
 			break #exit the loop
+		elif get_entity_type() != Entities.Pumpkin:
+			plant(Entities.Pumpkin) # now solved??????? no not solved
